@@ -2,7 +2,7 @@ from BaseApp import BasePage
 from selenium.webdriver.common.by import By
 import logging
 import yaml
-import requests
+
 
 with open("locators.yaml") as f:
     locators = yaml.safe_load(f)
@@ -23,7 +23,7 @@ class TestSearchLocators:
 
 class OperationsHelper(BasePage):
 
-    # Methods for entering test in fields
+    # Methods user authorization
     def enter_login(self, word):
         logging.debug(f"Send {word} to element {TestSearchLocators.locators_dict['LOCATOR_INPUT_LOGIN']}")
         login_field = self.find_element(TestSearchLocators.locators_dict['LOCATOR_INPUT_LOGIN'])
@@ -42,8 +42,8 @@ class OperationsHelper(BasePage):
         else:
             logging.error('Field Password not found')
 
-    # Clicked to button methods
-    def click_login_button(self):
+    # Methods button pressing
+    def press_login_button(self):
         logging.debug("Click login button")
         btn = self.find_element(TestSearchLocators.locators_dict['LOCATOR_BTN_LOGIN'])
         if btn:
@@ -51,7 +51,7 @@ class OperationsHelper(BasePage):
         else:
             logging.error('Button Login not found')
 
-    def click_btn_about(self):
+    def press_about_btn(self):
         logging.debug("Click about link")
         btn = self.find_element(TestSearchLocators.locators_dict['LOCATOR_BTN_ABOUT'])
         if btn:
@@ -59,8 +59,8 @@ class OperationsHelper(BasePage):
         else:
             logging.error('Error click about link')
 
-    # Methods for getting text
-    def get_font_title_about_page(self):
+    # Methods for get text
+    def get_title_about(self):
         about_page_field = self.find_element(TestSearchLocators.locators_dict['LOCATOR_TITLE_ABOUT_PAGE'], time=3)
         if about_page_field:
             font = about_page_field.value_of_css_property('font-size')
